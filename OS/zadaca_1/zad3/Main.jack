@@ -1,0 +1,11 @@
+class Main {
+    function void main() {
+        var Clock c;
+        
+        let c = Clock.new(10,15);
+        do c.groundhog(1);
+        
+        do c.dispose();
+        return;
+    }
+}

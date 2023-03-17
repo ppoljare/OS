@@ -1,0 +1,40 @@
+class Main {
+    function void main() {
+        var Matrix A, B, C;
+        let A = Matrix.new(3);
+        let B = Matrix.new(3);
+        
+        do A.setElem(0,0,1);
+        do A.setElem(0,2,2);
+        do A.setElem(1,0,3);
+        do A.setElem(1,1,4);
+        do A.setElem(1,2,5);
+        do A.setElem(2,1,6);
+        do A.print();
+        do Output.println();
+        
+        do B.setElem(0,0,1);
+        do B.setElem(2,0,2);
+        do B.setElem(0,1,3);
+        do B.setElem(1,1,7);
+        do B.setElem(2,1,5);
+        do B.setElem(1,2,6);
+        do B.print();
+        do Output.println();
+        
+        let C = A.multMat(B);
+        
+        //let C = A.multScalar(2);
+        do C.print();
+        do Output.println();
+        //do Output.printInt(A.norm());
+        
+        let C = Matrix.eye(4);
+        do C.print();
+        
+        do A.dispose();
+        do B.dispose();
+        do C.dispose();
+        return;
+    }
+}

@@ -1,0 +1,14 @@
+function Main.main 1
+push constant 10
+push constant 15
+call Clock.new 2
+pop local 0
+push local 0
+push constant 1
+call Clock.groundhog 2
+pop temp 0
+push local 0
+call Clock.dispose 1
+pop temp 0
+push constant 0
+return

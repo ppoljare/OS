@@ -1,0 +1,181 @@
+class Clock {
+    field Array xs, ys, dxs, dys, dxe, dye;
+    field int h, m, x0, y0;
+    
+    constructor Clock new(int hours, int minutes) {
+        let h = hours;
+        let m = minutes;
+        
+        let x0 = 255;
+        let y0 = 127;
+        
+        let xs = Array.new(60);
+        let ys = Array.new(60);
+        
+        let dxs = Array.new(36);
+        let dys = Array.new(36);
+        let dxe = Array.new(36);
+        let dye = Array.new(36);
+        
+        do set_xs_ys();
+        do set_dx_dy();
+        
+        return this;
+    }
+    
+    method void set_xs_ys() {
+        let xs[0] = 255;  let ys[0] = 27;   let xs[1] = 265;  let ys[1] = 28;
+        let xs[2] = 276;  let ys[2] = 29;   let xs[3] = 286;  let ys[3] = 32;
+        let xs[4] = 296;  let ys[4] = 36;   let xs[5] = 305;  let ys[5] = 40;
+        let xs[6] = 314;  let ys[6] = 46;   let xs[7] = 322;  let ys[7] = 53;
+        let xs[8] = 329;  let ys[8] = 60;   let xs[9] = 336;  let ys[9] = 68;
+        let xs[10] = 342; let ys[10] = 77;  let xs[11] = 346; let ys[11] = 86; 
+        let xs[12] = 350; let ys[12] = 96;  let xs[13] = 353; let ys[13] = 106;
+        let xs[14] = 354; let ys[14] = 117; let xs[15] = 355; let ys[15] = 127;
+        let xs[16] = 354; let ys[16] = 137; let xs[17] = 353; let ys[17] = 148;
+        let xs[18] = 350; let ys[18] = 158; let xs[19] = 346; let ys[19] = 168;
+        let xs[20] = 342; let ys[20] = 177; let xs[21] = 336; let ys[21] = 186;
+        let xs[22] = 329; let ys[22] = 194; let xs[23] = 322; let ys[23] = 201;
+        let xs[24] = 314; let ys[24] = 208; let xs[25] = 305; let ys[25] = 214;
+        let xs[26] = 296; let ys[26] = 218; let xs[27] = 286; let ys[27] = 222;
+        let xs[28] = 276; let ys[28] = 225; let xs[29] = 265; let ys[29] = 226;
+        let xs[30] = 255; let ys[30] = 227; let xs[31] = 245; let ys[31] = 226;
+        let xs[32] = 234; let ys[32] = 225; let xs[33] = 224; let ys[33] = 222;
+        let xs[34] = 214; let ys[34] = 218; let xs[35] = 205; let ys[35] = 214;
+        let xs[36] = 196; let ys[36] = 208; let xs[37] = 188; let ys[37] = 201;
+        let xs[38] = 181; let ys[38] = 194; let xs[39] = 174; let ys[39] = 186;
+        let xs[40] = 168; let ys[40] = 177; let xs[41] = 164; let ys[41] = 168;
+        let xs[42] = 160; let ys[42] = 158; let xs[43] = 157; let ys[43] = 148;
+        let xs[44] = 156; let ys[44] = 137; let xs[45] = 155; let ys[45] = 127;
+        let xs[46] = 156; let ys[46] = 117; let xs[47] = 157; let ys[47] = 106;
+        let xs[48] = 160; let ys[48] = 96;  let xs[49] = 164; let ys[49] = 86; 
+        let xs[50] = 168; let ys[50] = 77;  let xs[51] = 174; let ys[51] = 68; 
+        let xs[52] = 181; let ys[52] = 60;  let xs[53] = 188; let ys[53] = 53; 
+        let xs[54] = 196; let ys[54] = 46;  let xs[55] = 205; let ys[55] = 40; 
+        let xs[56] = 214; let ys[56] = 36;  let xs[57] = 224; let ys[57] = 32; 
+        let xs[58] = 234; let ys[58] = 29;  let xs[59] = 245; let ys[59] = 28; 
+        
+        return;
+    }
+    
+    method void set_dx_dy() {
+        let dxs[0] = 255;  let dxe[0] = 255;  let dys[0] = 7;   let dye[0] = 17; 
+        let dxs[1] = 315;  let dxe[1] = 310;  let dys[1] = 23;  let dye[1] = 32; 
+        let dxs[2] = 359;  let dxe[2] = 350;  let dys[2] = 67;  let dye[2] = 72; 
+        let dxs[3] = 375;  let dxe[3] = 365;  let dys[3] = 127; let dye[3] = 127;
+        let dxs[4] = 359;  let dxe[4] = 350;  let dys[4] = 187; let dye[4] = 182;
+        let dxs[5] = 315;  let dxe[5] = 310;  let dys[5] = 231; let dye[5] = 222;
+        let dxs[6] = 255;  let dxe[6] = 255;  let dys[6] = 247; let dye[6] = 237;
+        let dxs[7] = 195;  let dxe[7] = 200;  let dys[7] = 231; let dye[7] = 222;
+        let dxs[8] = 151;  let dxe[8] = 160;  let dys[8] = 187; let dye[8] = 182;
+        let dxs[9] = 135;  let dxe[9] = 145;  let dys[9] = 127; let dye[9] = 127;
+        let dxs[10] = 151; let dxe[10] = 160; let dys[10] = 67; let dye[10] = 72;
+        let dxs[11] = 195; let dxe[11] = 200; let dys[11] = 23; let dye[11] = 32;
+        
+        let dxs[12] = 254; let dxe[12] = 254; let dys[12] = 7;   let dye[12] = 17; 
+        let dxs[13] = 314; let dxe[13] = 309; let dys[13] = 23;  let dye[13] = 31; 
+        let dxs[14] = 358; let dxe[14] = 350; let dys[14] = 66;  let dye[14] = 71; 
+        let dxs[15] = 375; let dxe[15] = 365; let dys[15] = 126; let dye[15] = 126;
+        let dxs[16] = 359; let dxe[16] = 351; let dys[16] = 186; let dye[16] = 181;
+        let dxs[17] = 316; let dxe[17] = 311; let dys[17] = 230; let dye[17] = 222;
+        let dxs[18] = 256; let dxe[18] = 256; let dys[18] = 247; let dye[18] = 237;
+        let dxs[19] = 196; let dxe[19] = 201; let dys[19] = 231; let dye[19] = 223;
+        let dxs[20] = 152; let dxe[20] = 160; let dys[20] = 188; let dye[20] = 183;
+        let dxs[21] = 135; let dxe[21] = 145; let dys[21] = 128; let dye[21] = 128;
+        let dxs[22] = 151; let dxe[22] = 159; let dys[22] = 68;  let dye[22] = 73; 
+        let dxs[23] = 194; let dxe[23] = 199; let dys[23] = 24;  let dye[23] = 32; 
+        
+        let dxs[24] = 256; let dxe[24] = 256; let dys[24] = 7;   let dye[24] = 17; 
+        let dxs[25] = 316; let dxe[25] = 311; let dys[25] = 24;  let dye[25] = 32; 
+        let dxs[26] = 359; let dxe[26] = 351; let dys[26] = 68;  let dye[26] = 73; 
+        let dxs[27] = 375; let dxe[27] = 365; let dys[27] = 128; let dye[27] = 128;
+        let dxs[28] = 358; let dxe[28] = 350; let dys[28] = 188; let dye[28] = 183;
+        let dxs[29] = 314; let dxe[29] = 309; let dys[29] = 231; let dye[29] = 223;
+        let dxs[30] = 254; let dxe[30] = 254; let dys[30] = 247; let dye[30] = 237;
+        let dxs[31] = 194; let dxe[31] = 199; let dys[31] = 230; let dye[31] = 222;
+        let dxs[32] = 151; let dxe[32] = 159; let dys[32] = 186; let dye[32] = 181;
+        let dxs[33] = 135; let dxe[33] = 145; let dys[33] = 126; let dye[33] = 126;
+        let dxs[34] = 152; let dxe[34] = 160; let dys[34] = 66;  let dye[34] = 71; 
+        let dxs[35] = 196; let dxe[35] = 201; let dys[35] = 23;  let dye[35] = 31; 
+        
+        return;
+    }
+    
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+    
+    method void updateTime(int hours, int minutes) {
+        let m = m + minutes;
+        while (~(m < 60)) {
+            let h = h + 1;
+            let m = m - 60;
+        }
+        
+        let h = h + hours;
+        while (~(h < 12)) {
+            let h = h - 12;
+        }
+        
+        return;
+    }
+    
+    method void draw_init() {
+        var int i;
+        do Screen.clearScreen();
+        
+        do Screen.drawCircle(x0, y0, 123);
+        do Screen.setColor(false);
+        do Screen.drawCircle(x0, y0, 120);
+        do Screen.setColor(true);
+        
+        let i = 0;
+        while (i < 12) {
+            do Screen.drawLine(dxs[i], dys[i], dxe[i], dye[i]);
+            do Screen.drawLine(dxs[i+12], dys[i+12], dxe[i+12], dye[i+12]);
+            do Screen.drawLine(dxs[i+24], dys[i+24], dxe[i+24], dye[i+24]);
+            let i = i + 1;
+        }
+        
+        return;
+    }
+    
+    method void draw() {
+        var int xh, yh, xm, ym, hours;
+        let hours = (h*5) + (m/12);
+        let xm = xs[m];
+        let ym = ys[m];
+        let xh = x0 + ((xs[hours]-x0)/2);
+        let yh = y0 + ((ys[hours]-y0)/2);
+        
+        do Screen.drawLine(x0, y0, xm, ym);
+        do Screen.drawLine(x0, y0, xh, yh);
+        
+        do Screen.setColor(true);
+        do Screen.drawCircle(x0, y0, 8);
+        do Screen.setColor(false);
+        do Screen.drawCircle(x0, y0, 5);
+        do Screen.setColor(true);
+        
+        return;
+    }
+    
+    method void groundhog(int bps) {
+        var int xh, yh, xm, ym, hours;
+        
+        do draw_init();
+        do draw();
+        while (true) {
+            do Sys.wait(1000/bps);
+            do Screen.setColor(false);
+            do draw();
+            
+            do updateTime(0,1);
+            do Screen.setColor(true);
+            do draw();
+        }
+        
+        return;
+    }
+}

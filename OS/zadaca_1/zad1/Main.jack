@@ -1,0 +1,32 @@
+class Main {
+    function void main() {
+        var String test;
+        
+        let test = "(1+2+[3)]";
+        do Expr.test_checkPars(test);
+        
+        let test = "(1+x+y)}}";
+        do Expr.test_checkPars(test);
+        
+        let test = "(1+[x+y])";
+        do Expr.test_checkPars(test);
+        
+        let test = "1+2+3";
+        do Expr.test_checkPars(test);
+        
+        let test = "[()]";
+        do Expr.test_checkPars(test);
+        
+        let test = "[()";
+        do Expr.test_checkPars(test);
+        
+        let test = "(1+2+[3])";
+        do Expr.test_checkPars(test);
+        
+        let test = "{[(0*1)+(2/3)]+(4-5)}";
+        do Expr.test_checkPars(test);
+        
+        do test.dispose();
+        return;
+    }
+}

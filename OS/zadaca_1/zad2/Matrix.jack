@@ -1,0 +1,145 @@
+class Matrix {
+    field int size;
+    field Array data;
+    
+    constructor Matrix new(int n) {
+        if (~(n > 0)) {
+            do Sys.error(2);
+            return this;
+        }
+        
+        let size = n;
+        let data = Array.new(size*size);
+        
+        return this;
+    }
+    
+    method void print() {
+        var int i, j;
+        
+        let i = 0;
+        while (i < size) {
+            let j = 0;
+            while (j < size) {
+                do Output.printInt(data[i*size + j]);
+                do Output.printString(" ");
+                let j = j + 1;
+            }
+            
+            do Output.println();
+            let i = i + 1;
+        }
+        
+        return;
+    }
+    
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+    
+    method int getElem(int i, int j) {
+        return data[i*size + j];
+    }
+    
+    method void setElem(int i, int j, int val) {
+        let data[i*size + j] = val;
+        return;
+    }
+    
+    method Matrix add(Matrix B) {
+        var int i, j, pos;
+        var Matrix C;
+        
+        let C = Matrix.new(size);
+        
+        let i = 0;
+        while (i < size) {
+            let j = 0;
+            while (j < size) {
+                let pos = i * size + j;
+                do C.setElem(i, j, data[pos]+B.getElem(i,j));
+                let j = j + 1;
+            }
+            
+            let i = i + 1;
+        }
+        
+        return C;
+    }
+    
+    method Matrix multScalar(int a) {
+        var int i, j;
+        var Matrix C;
+        
+        let C = Matrix.new(size);
+        
+        let i = 0;
+        while (i < size) {
+            let j = 0;
+            while (j < size) {
+                do C.setElem(i, j, a*data[i*size+j]);
+                let j = j + 1;
+            }
+            
+            let i = i + 1;
+        }
+        
+        return C;
+    }
+    
+    method Matrix multMat(Matrix B) {
+        var int i, j, k, res;
+        var Matrix C;
+        
+        let C = Matrix.new(size);
+        
+        let i = 0;
+        while (i < size) {
+            let j = 0;
+            while (j < size) {
+                let res = 0;
+                let k = 0;
+                while (k < size) {
+                    let res = res + (data[i*size+k] * B.getElem(k,j));
+                    let k = k + 1;
+                }
+                do C.setElem(i, j, res);
+                let j = j + 1;
+            }
+            let i = i + 1;
+        }
+        
+        return C;
+    }
+    
+    method int norm() {
+        var int i, n, res;
+        
+        let n = size * size;
+        let res = 0;
+        
+        let i = 0;
+        while (i < n) {
+            let res = res + (data[i]*data[i]);
+            let i = i + 1;
+        }
+        
+        return Math.sqrt(res);
+    }
+    
+    function Matrix eye(int n) {
+        var int i;
+        var Matrix A;
+        
+        let A = Matrix.new(n);
+        
+        let i = 0;
+        while (i < n) {
+            do A.setElem(i, i, 1);
+            let i = i + 1;
+        }
+        
+        return A;
+    }
+}

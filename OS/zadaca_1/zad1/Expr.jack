@@ -1,0 +1,70 @@
+class Expr {
+    function bool checkPars(String xs) {
+        // 40, 91, 123
+        // 41, 93, 125
+        
+        var String stack;
+        var int i, len, sp;
+        var char x;
+        
+        let len = xs.length();
+        let stack = String.new(len);
+        let sp = 0;
+        
+        let i = 0;
+        while (i < len) {
+            // (x:xs)
+            let x = xs.charAt(i);
+            
+            // x=='('
+            if (x=40) {
+                do stack.appendChar(41);
+                let sp = sp + 1;
+            } else {
+                // elem x "[{"
+                if ((x=91) | (x=123)) {
+                    do stack.appendChar(x+2);
+                    let sp = sp + 1;
+                } else {
+                    // elem x ")]}"
+                    if ((x=41) | (x=93) | (x=125)) {
+                        // stack empty
+                        if (sp = 0) {
+                            do stack.dispose();
+                            return false;
+                        } else {
+                            // x == head stack
+                            if (x = stack.charAt(sp-1)) {
+                                do stack.eraseLastChar();
+                                let sp = sp - 1;
+                            } else {
+                                do stack.dispose();
+                                return false;
+                            }
+                        }
+                    } else {
+                        // do nothing
+                    }
+                }
+            }
+            
+            let i = i + 1;
+        }
+        
+        do stack.dispose();
+        return (sp = 0);
+    }
+    
+    function void test_checkPars(String s) {
+        if (Expr.checkPars(s) = true) {
+            do Output.printString("true    ");
+        } else {
+            do Output.printString("false   ");
+        }
+        do Output.printString(s);
+        do Output.println();
+        do Output.println();
+        
+        return;
+    }
+}
