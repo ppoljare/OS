@@ -1,0 +1,50 @@
+class Main {
+    function void main() {
+        var int x, y, z;
+        var Array a, b, c;
+        //do Sys.wait(2000);
+        let x = Memory.alloc(15);
+        let y = Memory.alloc(7);
+        let z = Memory.alloc(18);
+        
+        let a = Array.new(4);
+        let a[0] = 1;
+        let a[1] = 8;
+        let a[2] = 2;
+        let a[3] = 5;
+        
+        let b = Array.new(10);
+        
+        let c = Array.new(16);
+        
+        /*do Output.printString("x: ");
+        do Output.printInt(x);
+        do Output.println();
+        do Output.printString("y: ");
+        do Output.printInt(y);
+        do Output.println();
+        do Output.printString("z: ");
+        do Output.printInt(z);
+        do Output.println();
+        do Output.printString("a: ");
+        do Output.printInt(a);
+        do Output.println();*/
+        
+        do Memory.memcpy(a, x, 4);
+        
+        //do Output.printString("6+9");
+        
+        do Memory.deAlloc(y);
+        do b.dispose();
+        //do Memory.deAlloc(z);
+        do Memory.deAlloc(x);
+        
+        do a.dispose();
+        //do Sys.wait(1000);
+        do c.dispose();
+        do Memory.defrag();
+        //do Output.printInt(z);
+        while (true) {}
+        return;
+    }
+}

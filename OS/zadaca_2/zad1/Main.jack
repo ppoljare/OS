@@ -1,0 +1,63 @@
+class Main
+{
+    function void main()
+    {
+        var int i;
+        do Output.printInt(Math.divide(38,7)); do Output.println();
+        do Output.printInt(Math.divide(38,-7)); do Output.println();
+        do Output.printInt(Math.divide(-38,-7)); do Output.println();
+        do Output.printInt(Math.divide(-38,7)); do Output.println();
+        
+        do Output.printInt(Math.divide(158, 3));
+        do Output.println();
+        
+        /*let i = 0;
+        while (i < 36) {
+            do Output.printInt(i);
+            do Output.printString("  ");
+            do Output.printInt(Math.log(i));
+            do Output.printString("      ");
+            
+            do Output.printInt(i+1);
+            do Output.printString("  ");
+            do Output.printInt(Math.log(i+1));
+            do Output.println();
+            
+            let i = i + 2;
+        }*/
+        
+        let i = 0;
+        while (i < 6) {
+            do Output.printInt(Math.pow(-3, i));
+            do Output.printString("    ");
+            let i = i + 1;
+        }
+        do Output.println();
+        /*
+        let i = 0;
+        while (i < 6) {
+            do Output.printInt(Math.pow(4, i));
+            do Output.printString("    ");
+            let i = i + 1;
+        }
+        do Output.println();
+        
+        let i = 0;
+        while (i < 6) {
+            do Output.printInt(Math.pow(5, i));
+            do Output.printString("    ");
+            let i = i + 1;
+        }
+        do Output.println();
+        
+        let i = 0;
+        while (i < 6) {
+            do Output.printInt(Math.pow(7, i));
+            do Output.printString("    ");
+            let i = i + 1;
+        }
+        do Output.println();
+        */
+        return;
+    }
+}

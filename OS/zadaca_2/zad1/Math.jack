@@ -1,0 +1,147 @@
+/**
+ * A basic math library.
+ */
+class Math {
+    static Array twoToThe;
+
+    /** Initializes the library. */
+    function void init() {
+        var int i, pow;
+        let twoToThe = Array.new(16);
+        
+        let i = 0;
+        let pow = 1;
+        while (i < 16) {
+            let twoToThe[i] = pow;
+            let pow = pow + pow;
+            let i = i + 1;
+        }
+        
+        return;
+    }
+
+    /** Returns the absolute value of x. */
+    function int abs(int x) {
+        if (x < 0) {
+            return -x;
+        }
+        return x;
+    }
+
+    /** Returns the product of x and y. */
+    function int multiply(int x, int y) {
+        var int sum, shiftedX, i;
+        
+        let sum = 0;
+        let shiftedX = x;
+        
+        let i = 0;
+        while (i < 16) {
+            if (twoToThe[i] & y) {
+                let sum = sum + shiftedX;
+            }
+            let shiftedX = shiftedX + shiftedX;
+            let i = i + 1;
+        }
+        
+        return sum;
+    }
+    
+    function int dividePositive(int x, int y) {
+        var int q;
+        
+        if (y > x) {
+            return 0;
+        }
+        
+        let q = Math.dividePositive(x, 2*y);
+        if ((x - (2*q*y)) < y) {
+            return 2*q;
+        } else {
+            return 2*q + 1;
+        }
+    }
+
+    /** Returns the integer part of x/y. */
+    function int divide(int x, int y) {
+        if ((x & twoToThe[15]) = (y & twoToThe[15])) {
+            return Math.dividePositive(Math.abs(x), Math.abs(y));
+        }
+        
+        return -Math.dividePositive(Math.abs(x), Math.abs(y));
+    }
+
+    /** Returns the integer part of the square root of x. */
+    function int sqrt(int x) {
+        var int j, y, pow;
+        
+        if (x < 0) {
+            return 0;
+        }
+        let y = 0;
+        
+        let j = 7;
+        while (j > -1) {
+            let pow = y + twoToThe[j];
+            let pow = Math.multiply(pow, pow);
+            if (~(pow > x)) {
+                let y = y + twoToThe[j];
+            }
+            let j = j - 1;
+        }
+        
+        return y;
+    }
+
+    /** Returns the greater number. */
+    function int max(int x, int y) {
+        if (x > y) {
+            return x;
+        }
+        return y;
+    }
+
+    /** Returns the smaller number. */
+    function int min(int x, int y) {
+        if (x < y) {
+            return x;
+        }
+        return y;
+    }
+    
+    /* Returns the integer part of lg(x) */
+    function int log(int x) {
+        var int i;
+        
+        if (x < 1) {
+            return -1;
+        }
+        
+        let i = 14;
+        while (i > 0) {
+            if (~(twoToThe[i] > x)) {
+                return i;
+            }
+            let i = i - 1;
+        }
+        
+        return 0;
+    }
+    
+    /* Returns b^p */
+    function int pow(int b, int p) {
+        var int res;
+        
+        let res = 1;
+        while (p > 0) {
+            if (p & 1) {
+                let res = res * b;
+            }
+            
+            let b = b * b;
+            let p = p / 2;
+        }
+        
+        return res;
+    }
+}
