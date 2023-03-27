@@ -43,7 +43,7 @@ class Memory {
             let len = ram[curr + 1];
             
             // check if current block is large enough
-            if (~(len < size + 2)) { // len >= size + 2
+            if (~(len < (size + 2))) { // len >= size + 2
                 // the block is large enough, use it (first fit) 
                 
                 let ram[curr + 1] = len - size - 2;

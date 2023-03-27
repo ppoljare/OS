@@ -65,9 +65,9 @@ push that 0
 pop local 2
 push local 2
 push argument 0
-lt
 push constant 2
 add
+lt
 not
 if-goto IF_TRUE0
 goto IF_FALSE0
