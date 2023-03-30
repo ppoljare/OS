@@ -1,0 +1,93 @@
+class Tetris {
+    field int x, y, angle;
+    
+    constructor Tetris new(int x0, int y0, int a) {
+        let x = x0 - (x0 & 15);
+        let y = y0 - (y0 & 15);
+        if (x < 16) {
+            let x = 16;
+        }
+        if (y < 16) {
+            let y = 16;
+        }
+        if (x > 480) {
+            let x = 480;
+        }
+        if (y > 224) {
+            let y = 224;
+        }
+        let angle = a & 3;
+        do render();
+        return this;
+    }
+    
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+    
+    method void render() {
+        do Screen.clearScreen();
+        do Screen.drawRectangle(x+1, y+1, x+14, y+14);
+        
+        if (angle & 1 = 0) {
+            do Screen.drawRectangle(x+1, y-15, x+14, y-2);
+            do Screen.drawRectangle(x+1, y+17, x+14, y+30);
+            if (angle & 2 = 0) {
+                do Screen.drawRectangle(x+17, y+17, x+30, y+30);
+            } else {
+                do Screen.drawRectangle(x-15, y-15, x-2, y-2);
+            }
+        } else {
+            do Screen.drawRectangle(x-15, y+1, x-2, y+14);
+            do Screen.drawRectangle(x+17, y+1, x+30, y+14);
+            if (angle & 2 = 0) {
+                do Screen.drawRectangle(x-15, y+17, x-2, y+30);
+            } else {
+                do Screen.drawRectangle(x+17, y-15, x+30, y-2);
+            }
+        }
+        
+        return;
+    }
+    
+    method void loop() {
+        while (~(Keyboard.keyPressed() = 140)) {
+            if ((Keyboard.keyPressed() = 130) & (x > 16)) {
+                // left
+                let x = x - 16;
+                do render();
+                do Sys.wait(100);
+            }
+            if ((Keyboard.keyPressed() = 132) & (x < 480)) {
+                // right
+                let x = x + 16;
+                do render();
+                do Sys.wait(100);
+            }
+            if ((Keyboard.keyPressed() = 131) & (y > 16)) {
+                // up
+                let y = y - 16;
+                do render();
+                do Sys.wait(100);
+            }
+            if ((Keyboard.keyPressed() = 133) & (y < 224)) {
+                // down
+                let y = y + 16;
+                do render();
+                do Sys.wait(100);
+            }
+            if ((Keyboard.keyPressed() = 114) | (Keyboard.keyPressed() = 82)) {
+                // rotate
+                let angle = (angle + 1) & 3;
+                do render();
+                do Sys.wait(250);
+            }
+        }
+        
+        do Screen.clearScreen();
+        do Sys.wait(500);
+        
+        return;
+    }
+}

@@ -1,0 +1,9 @@
+class Main {
+    function void main() {
+        var Tetris b;
+        let b = Tetris.new(256, 128, 0);
+        do b.loop();
+        do b.dispose();
+        return;
+    }
+}

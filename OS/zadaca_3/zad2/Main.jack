@@ -1,0 +1,17 @@
+class Main {
+    function void main() {
+        do Output.printChar(78);
+        do Output.println();
+        do Output.printString("abcdef");
+        do Output.println();
+        do Output.printInt(1234);
+        do Output.println();
+        do Output.printString("pro");
+        do Output.printString("ba");
+        do Output.backSpace();
+        do Output.backSpace();
+        do Output.backSpace();
+        do Output.printString(" Lorem");
+        return;
+    }
+}
