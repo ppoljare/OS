@@ -67,5 +67,7 @@ push constant 109
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
+call Output.backSpace 0
+pop temp 0
 push constant 0
 return

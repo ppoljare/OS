@@ -12,6 +12,7 @@ class Main {
         do Output.backSpace();
         do Output.backSpace();
         do Output.printString(" Lorem");
+        do Output.backSpace();
         return;
     }
 }

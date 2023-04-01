@@ -272,6 +272,17 @@ class Output {
             let cursorX = cursorX - 1;
         }
         
+        do Output.printChar(32);
+        
+        if (cursorX = 0) {
+            if (cursorY > 0) {
+                let cursorY = cursorY - 1;
+                let cursorX = 63;
+            }
+        } else {
+            let cursorX = cursorX - 1;
+        }
+        
         return;
     }
 }
